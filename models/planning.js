@@ -1,3 +1,4 @@
+// what data will be gathered by the planning table
 module.exports = (sequelize, DataTypes) => {
     const Planning = sequelize.define('planning', {
         movieName: {

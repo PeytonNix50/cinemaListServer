@@ -1,3 +1,4 @@
+// what data will be gathered by the completion controller
 module.exports = (sequelize, DataTypes) => {
     const Completion = sequelize.define('completion', {
         movieName: {

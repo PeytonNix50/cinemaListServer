@@ -5,6 +5,7 @@ const {Op} = require('sequelize');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+// registration POST request
 router.post('/register', (req, res) => {
     User.create({
         firstName: req.body.firstName,
@@ -26,6 +27,7 @@ router.post('/register', (req, res) => {
     .catch(err => res.status(500).json({error: err}));
 });
 
+// login POST request
 router.post('/login', (req, res) => {
     User.findOne({ where: { email: req.body.email }})
     .then(user => {
@@ -53,6 +55,7 @@ router.post('/login', (req, res) => {
     .catch(err => res.status(500).json({ error: "Database Error" }))
 });
 
+// delete user DELETE request (for admins)
 router.delete('/deleteuser', async (req, res) => {
     try {
         const result = await User.destroy({
@@ -65,6 +68,7 @@ router.delete('/deleteuser', async (req, res) => {
     }
 });
 
+// GET request for users to search users in the database
 router.get('/:username', (req, res) => {
     User.findAll({
         where: {
@@ -76,6 +80,5 @@ router.get('/:username', (req, res) => {
         .then(item => res.status(200).json(item))
         .catch(err => res.status(500).json({error: err}))
 });
-
 
 module.exports = router;

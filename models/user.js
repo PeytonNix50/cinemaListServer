@@ -1,3 +1,4 @@
+// what data will be gathered by the user table
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('user', {
         firstName: {
