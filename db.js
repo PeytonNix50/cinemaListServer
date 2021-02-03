@@ -3,7 +3,6 @@ const Sequelize = require('sequelize');
 //connect to database using sequelize where
 //                                 db name          user           password     options
 const database = new Sequelize(process.env.DATABASE_URL, {
-    host:'localhost',
     dialect: 'postgres'
 });
 //authenticate using the username and password
