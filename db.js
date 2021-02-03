@@ -2,7 +2,12 @@ const Sequelize = require('sequelize');
 
 const database = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
-    host: 'localhost'
+    dialectOptions: process.env.DATABASE_URL.includes('localhost') ? {} : { 
+        ssl: {
+          require: true,
+          rejectUnauthorized: false, // <<<<<<< YOU NEED THIS TO FIX UNHANDLED REJECTION 
+        }
+    }
 });
 
 database.authenticate()
